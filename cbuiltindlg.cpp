@@ -65,5 +65,21 @@ void CBuiltinDlg::doPushBtn() //槽函數實作
           displayTextEdit->setText(fileName);
 
       }
+      if(btn == progressPushBtn)
+      {
+          QProgressDialog progress("複製檔案中...", "取消", 0,100000,this); //宣告並建立進度對話盒物件
+          progress.setWindowTitle("進度對話盒展示");
+          progress.show();
+          for(int i=0;i<100000;i++)
+          {
+              progress.setValue(i);
+              qApp->processEvents();
+              if(progress.wasCanceled())
+              {
+                  break;
+              }
+              qDebug()<<i;
+          }
+      }
 
     }
